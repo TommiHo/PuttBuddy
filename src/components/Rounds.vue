@@ -25,7 +25,7 @@ defineProps({
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 0;
   margin: 1rem;
 }
@@ -34,14 +34,15 @@ defineProps({
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0.5rem;
-  border: 1px solid white;
+  border: 2px solid white;
+  border-radius: 8px;
 }
 .distance {
-  font-size: 12px;
+  font-size: medium;
+  color: lightgrey;
 }
 .score {
-  font-size: 18px;
+  font-size: large;
   font-weight: bold;
 }
 </style>

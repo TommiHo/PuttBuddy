@@ -18,6 +18,11 @@ function calculateTotalScore() {
   });
   return totalScore;
 }
+
+function undo() {
+  successfulPutts.value.splice(successfulPutts.value.length - 1, 1);
+  distances.value.splice(distances.value.length - 1, 1);
+}
 </script>
 
 <template>
@@ -28,6 +33,7 @@ function calculateTotalScore() {
   />
   <Buttons
     @addScore="(score) => successfulPutts.length < 20 && addScore(score)"
+    @undo="undo()"
   />
 </template>
 
