@@ -35,6 +35,11 @@ h1 {
 }
 
 button {
+  background-color: transparent;
+  border: 1px solid white;
+  height: 2rem;
+  font-weight: bold;
+  font-size: medium;
 }
 
 .card {
