@@ -20,8 +20,10 @@ function calculateTotalScore() {
 }
 
 function undo() {
-  successfulPutts.value.splice(successfulPutts.value.length - 1, 1);
-  distances.value.splice(distances.value.length - 1, 1);
+  if (distances.value.length > 1) {
+    successfulPutts.value.splice(successfulPutts.value.length - 1, 1);
+    distances.value.splice(distances.value.length - 1, 1);
+  }
 }
 </script>
 

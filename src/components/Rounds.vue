@@ -21,6 +21,22 @@ defineProps({
 </template>
 
 <style scoped>
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
 .rounds {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -36,6 +52,7 @@ defineProps({
   text-align: center;
   border: 2px solid white;
   border-radius: 8px;
+  animation: fadeInFromNone 0.5s ease-out;
 }
 .distance {
   font-size: medium;
