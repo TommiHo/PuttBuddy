@@ -58,32 +58,59 @@ function newRound() {
 </script>
 
 <template>
-  <h1 class="totalScore">{{ calculateTotalScore() }}</h1>
-  <button class="stats-toggle" type="button" @click="showStats = !showStats">
-    STATS
-  </button>
-  <Rounds
-    :distances="distances.slice(0, 20)"
-    :successfulPutts="successfulPutts"
-  />
-  <Buttons
-    v-if="successfulPutts.length < 20"
-    @addScore="(score) => successfulPutts.length < 20 && addScore(score)"
-    @undo="undo()"
-  />
-  <button
-    v-if="successfulPutts.length === 20"
-    type="button"
-    @click="newRound()"
-  >
-    New round
-  </button>
-  <Stats v-if="showStats" @click="showStats = !showStats" />
+  <div class="background"></div>
+  <div class="content">
+    <h1 class="totalScore">{{ calculateTotalScore() }}</h1>
+    <button class="stats-toggle" type="button" @click="showStats = !showStats">
+      STATS
+    </button>
+    <Rounds
+      :distances="distances.slice(0, 20)"
+      :successfulPutts="successfulPutts"
+    />
+    <Buttons
+      v-if="successfulPutts.length < 20"
+      @addScore="(score) => successfulPutts.length < 20 && addScore(score)"
+      @undo="undo()"
+    />
+    <button
+      v-if="successfulPutts.length === 20"
+      type="button"
+      @click="newRound()"
+    >
+      New round
+    </button>
+    <Stats v-if="showStats" @click="showStats = !showStats" />
+  </div>
 </template>
 
 <style scoped>
+.background {
+  background: url("../assets/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -o-filter: blur(8px);
+  -ms-filter: blur(8px);
+  filter: blur(8px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .totalScore {
   margin-left: 1rem;
+  text-shadow: 1px 1px 4px black;
 }
 
 .stats-toggle {

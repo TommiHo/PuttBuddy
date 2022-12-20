@@ -35,8 +35,13 @@ function addScore(score: number) {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
+
 .scoreButton {
   height: 4rem;
+  font-size: x-large;
+}
+.scoreButton:not(:first-child) {
+  border-left: 1px solid white;
 }
 .undo {
   align-self: flex-end;

@@ -50,16 +50,15 @@ defineProps({
   display: flex;
   flex-direction: column;
   text-align: center;
-  border: 2px solid white;
-  border-radius: 8px;
   animation: fadeInFromNone 0.5s ease-out;
 }
 .distance {
   font-size: medium;
-  color: lightgrey;
+  color: rgb(240, 240, 240);
 }
 .score {
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
+  text-shadow: 1px 1px 4px black;
 }
 </style>
