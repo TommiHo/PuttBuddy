@@ -36,8 +36,9 @@ h1 {
 
 button {
   background-color: transparent;
-  border: 0;
-  height: 2rem;
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 0.5rem;
   font-weight: bold;
   font-size: medium;
   text-shadow: 1px 1px 4px black;

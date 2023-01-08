@@ -37,14 +37,15 @@ function addScore(score: number) {
 }
 
 .scoreButton {
-  height: 4rem;
+  height: 6rem;
   font-size: x-large;
+  border: 0;
+  border-radius: 0;
 }
 .scoreButton:not(:first-child) {
   border-left: 1px solid white;
 }
 .undo {
   align-self: flex-end;
-  border-radius: 8px;
 }
 </style>

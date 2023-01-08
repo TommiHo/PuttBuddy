@@ -29,27 +29,23 @@ function undo() {
 }
 
 function saveScores() {
-  const previousScores = localStorage.getItem("totalScores");
+  const previousScores = localStorage.getItem("scores");
+  const roundData = {
+    rounds: distances.value.slice(0, 20).map((distance, index) => ({
+      distance,
+      putts: successfulPutts.value[index],
+    })),
+    score: calculateTotalScore(),
+    date: new Date(),
+  };
   localStorage.setItem(
-    "totalScores",
+    "scores",
     previousScores
-      ? [previousScores, calculateTotalScore()].toString()
-      : [calculateTotalScore()].toString()
-  );
-
-  const previousRounds = localStorage.getItem("rounds");
-  const round = distances.value.slice(0, 20).map((distance, index) => ({
-    distance,
-    putts: successfulPutts.value[index],
-  }));
-  localStorage.setItem(
-    "rounds",
-    previousRounds
-      ? JSON.stringify([...JSON.parse(previousRounds), round])
-      : JSON.stringify([round])
+      ? JSON.stringify([...JSON.parse(previousScores), roundData])
+      : JSON.stringify([roundData])
   );
   successfulPutts.value.splice(0);
-  distances.value.splice(0);
+  distances.value.splice(1);
 }
 
 function newRound() {
@@ -60,7 +56,13 @@ function newRound() {
 <template>
   <div class="background"></div>
   <div class="content">
-    <h1 class="totalScore">{{ calculateTotalScore() }}</h1>
+    <div class="score-row">
+      <h1 class="totalScore">{{ calculateTotalScore() }}</h1>
+      <div class="next-distance">
+        <span>Next distance:</span>
+        <span class="distance">{{ distances[distances.length - 1] }}m</span>
+      </div>
+    </div>
     <button class="stats-toggle" type="button" @click="showStats = !showStats">
       STATS
     </button>
@@ -73,13 +75,16 @@ function newRound() {
       @addScore="(score) => successfulPutts.length < 20 && addScore(score)"
       @undo="undo()"
     />
-    <button
-      v-if="successfulPutts.length === 20"
-      type="button"
-      @click="newRound()"
-    >
-      New round
-    </button>
+    <div class="new-round-button-container">
+      <button
+        v-if="successfulPutts.length === 20"
+        type="button"
+        class="new-round-button"
+        @click="newRound()"
+      >
+        New round
+      </button>
+    </div>
     <Stats v-if="showStats" @click="showStats = !showStats" />
   </div>
 </template>
@@ -108,9 +113,42 @@ function newRound() {
   left: 0;
   right: 0;
 }
+
+.score-row {
+  display: flex;
+}
 .totalScore {
   margin-left: 1rem;
   text-shadow: 1px 1px 4px black;
+  width: 90px;
+}
+
+.next-distance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.distance {
+  font-size: larger;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px black;
+}
+
+.new-round-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20%;
+}
+
+.new-round-button {
+  font-size: x-large;
+  padding: 1rem;
+  width: unset;
+  height: unset;
 }
 
 .stats-toggle {
