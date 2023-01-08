@@ -8,7 +8,6 @@ function addScore(score: number) {
 
 <template>
   <div class="buttons-container">
-    <button class="undo" type="button" @click="emit('undo')">UNDO</button>
     <div class="buttons">
       <button class="scoreButton" type="button" @click="addScore(0)">0</button>
       <button class="scoreButton" type="button" @click="addScore(1)">1</button>
@@ -17,6 +16,7 @@ function addScore(score: number) {
       <button class="scoreButton" type="button" @click="addScore(4)">4</button>
       <button class="scoreButton" type="button" @click="addScore(5)">5</button>
     </div>
+    <button class="undo" type="button" @click="emit('undo')">UNDO</button>
   </div>
 </template>
 

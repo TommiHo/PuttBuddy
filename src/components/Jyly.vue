@@ -22,6 +22,7 @@ function calculateTotalScore() {
 }
 
 function undo() {
+  console.log(distances, successfulPutts);
   if (distances.value.length > 1) {
     successfulPutts.value.splice(successfulPutts.value.length - 1, 1);
     distances.value.splice(distances.value.length - 1, 1);
@@ -48,7 +49,7 @@ function saveScores() {
   distances.value.splice(1);
 }
 
-function newRound() {
+function startNewGame() {
   saveScores();
 }
 </script>
@@ -71,21 +72,20 @@ function newRound() {
       :successfulPutts="successfulPutts"
     />
     <Buttons
-      v-if="successfulPutts.length < 20"
       @addScore="(score) => successfulPutts.length < 20 && addScore(score)"
       @undo="undo()"
     />
-    <div class="new-round-button-container">
+    <div class="new-game-button-container">
       <button
         v-if="successfulPutts.length === 20"
         type="button"
-        class="new-round-button"
-        @click="newRound()"
+        class="new-game-button"
+        @click="startNewGame()"
       >
-        New round
+        New game
       </button>
     </div>
-    <Stats v-if="showStats" @click="showStats = !showStats" />
+    <Stats v-if="showStats" @close="showStats = !showStats" />
   </div>
 </template>
 
@@ -136,15 +136,15 @@ function newRound() {
   text-shadow: 1px 1px 4px black;
 }
 
-.new-round-button-container {
+.new-game-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 20%;
+  bottom: 30%;
 }
 
-.new-round-button {
+.new-game-button {
   font-size: x-large;
   padding: 1rem;
   width: unset;
